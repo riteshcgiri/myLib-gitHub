@@ -1,0 +1,51 @@
+<svg id="roomImg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1080" shape-rendering="geometricPrecision" style="background-color:transparent">
+    <g transform="translate(0 0)">
+        <g transform="translate(-100 0)">
+            <rect id="chair_1" class="chair to-up" width="184" height="172" rx="20" ry="20" transform="translate(210 96)" fill="#198754" stroke-width="0" />
+            
+            <rect id="chair_2" class="chair to-left" width="184" height="172" rx="20" ry="20" transform="translate(14 283)" fill="#dc3545" stroke-width="0" />
+            
+            <rect id="chair_3" class="chair to-left" width="184" height="172" rx="20" ry="20" transform="translate(16 600)" fill="#198754" stroke-width="0" />
+            
+            <rect id="chair_4" class="chair to-down" width="184" height="172" rx="20" ry="20" transform="translate(210 802)" fill="#dc3545" stroke-width="0" />
+            
+            <rect id="chair_5" class="chair to-right" width="184" height="172" rx="20" ry="20" transform="translate(420 600)" fill="#198754" stroke-width="0" />
+            
+            <rect id="chair_6" class="chair to-right" width="184" height="172" rx="20" ry="20" transform="translate(421 283)" fill="#198754" stroke-width="0" />
+            
+            <rect id="t-one" width="401.04737" height="727.541061" rx="20" ry="20" transform="translate(103 172)" fill="#0d6efd" stroke-width="0" />
+        </g>
+        <g transform="translate(650 0)">
+            
+            <rect id="chair_7" class="chair to-up" width="184" height="172" rx="20" ry="20" transform="translate(210 96)" fill="#198754" stroke-width="0" />
+            
+            <rect id="chair_8" class="chair to-left" width="184" height="172" rx="20" ry="20" transform="translate(14 283)" fill="#dc3545" stroke-width="0" />
+            
+            <rect id="chair_9" class="chair to-left" width="184" height="172" rx="20" ry="20" transform="translate(16 600)" fill="#198754" stroke-width="0" />
+            
+            <rect id="chair_10" class="chair to-down" width="184" height="172" rx="20" ry="20" transform="translate(210 802)" fill="#dc3545" stroke-width="0" />
+            
+            <rect id="chair_11" class="chair to-right" width="184" height="172" rx="20" ry="20" transform="translate(420 600)" fill="#198754" stroke-width="0" />
+            
+            <rect id="chair_12" class="chair to-right" width="184" height="172" rx="20" ry="20" transform="translate(421 283)" fill="#198754" stroke-width="0" />
+            
+            <rect id="table_2" width="401.04737" height="727.541061" rx="20" ry="20" transform="translate(103 172)" fill="#0d6efd" stroke-width="0" />
+        </g>
+        <g transform="translate(1400 0)">
+           
+           <rect id="chair_13" class="chair to-up" width="184" height="172" rx="20" ry="20" transform="translate(210 96)" fill="#198754" stroke-width="0" />
+            
+            <rect id="chair_14" class="chair to-left" width="184" height="172" rx="20" ry="20" transform="translate(14 283)" fill="#dc3545" stroke-width="0" />
+            
+            <rect id="chair_15" class="chair to-left" width="184" height="172" rx="20" ry="20" transform="translate(16 600)" fill="#198754" stroke-width="0" />
+            
+            <rect id="chair_16" class="chair to-down" width="184" height="172" rx="20" ry="20" transform="translate(210 802)" fill="#dc3545" stroke-width="0" />
+            
+            <rect id="chair_17" class="chair to-right" width="184" height="172" rx="20" ry="20" transform="translate(420 600)" fill="#198754" stroke-width="0" />
+            
+            <rect id="chair_18" class="chair to-right" width="184" height="172" rx="20" ry="20" transform="translate(421 283)" fill="#198754" stroke-width="0" />
+            
+            <rect id="table_3" width="401.04737" height="727.541061" rx="20" ry="20" transform="translate(103 172)" fill="#0d6efd" stroke-width="0" />
+        </g>
+    </g>
+</svg>

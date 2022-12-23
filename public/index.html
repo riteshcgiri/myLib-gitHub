@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MyLib - Dashboard</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/src/style.css" />
+    <link rel="icon" type="image/x-icon" href="/src/favicon-32x32.png">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/public/index.html">MyLib.com</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/public/index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/public/components/about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/public/components/contact.html"
+                >Contact</a
+              >
+            </li>
+          </ul>
+          <div class="user">
+            <div id="userArea" class="userName text-white fw-bold P-0" role="button"></div>
+              <button type="button" class="fw-bold btn text-primary btn-sm p-0" id="logOutBtn">
+                Log Out
+              </button>
+          </div>
+          <div class="ms-2 user-img rounded-5 border-primary" role="button">
+            <img
+              src="/src/default-img.png"
+              class="img-fluid w-100 rounded-5"
+              alt="User"
+            />
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div id="alertBox"></div>
+    <div id="loading"></div>
+    <div class="container d-flex flex-column align-items-center">
+      <div class="text-start bg-dark mb-3 px-5 py-2 w-100 rounded-2 text-white">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb m-0">
+            <li class="breadcrumb-item active"><a href="/public/index.html" class="text-decoration-none">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-fill mb-1 me-1" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+            <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+          </svg>Dashboard</a></li>
+          </ol>
+        </nav>  
+      </div>
+      <div class=" d-flex align-items-center justify-content-between mb-3 w-50 bg-dark p-2 rounded-4 fw-bold all-view-seat" id="freshSeatData">
+      </div>
+
+      <div class="row align-items-start p-2 rounded-4 slot-option-box">
+        <div class="col mx-2">
+          <div class="card bg-dark mt-3 text-white " >
+            <img
+              src="../src/search-3d.png"
+              class="card-img-top border-bottom border-dark"
+              alt="..."
+              height="250"
+            />
+            <div class="card-body text-center">
+              <h5 class="card-title fw-bold text-primary">Check Slots</h5>
+              <div class="card-text text-start">
+                <p class="mb-1 fs-xs">
+                  <span class="fw-bold">Is there seats Available?</span> Let's
+                  go check and book your preferred timing and seat to study.
+                </p>
+                <p class="mb-3 fs-xs">
+                  <span class="fw-bold text-info">Updated</span> :
+                  <span>Few Min ago</span>
+                </p>
+              </div>
+              <a href="/public/components/checkSlot.html" class="btn btn-primary px-5">Check</a>
+            </div>
+          </div>
+        </div>
+        <div class="col text-start mx-2">
+          <div class="card bg-dark mt-3 text-white ">
+            <img
+              src="../src/book-3d.png"
+              class="card-img-top border-bottom border-dark"
+              alt="..."
+              height="250"
+            />
+            <div class="card-body text-center">
+              <h5 class="card-title fw-bold text-success">Book Slots</h5>
+              <div class="card-text text-start">
+                <p class="mb-1 fs-xs">
+                  <span class="fw-bold">Study Time,</span> let's Go and book a
+                  slot and start study to make changes in this world.
+                </p>
+                <p class="mb-3 fs-xs">
+                  <span class="fw-bold text-info">Updated</span> :
+                  <span>Few Min ago</span>
+                </p>
+              </div>
+              <a href="/public/components/bookSlot.html" class="btn btn-success px-5">Book</a>
+            </div>
+          </div>
+        </div>
+        <div class="col text-start mx-2">
+          <div class="card bg-dark mt-3 text-white ">
+            <img
+              src="../src/edit-3d.png"
+              class="card-img-top border-bottom border-dark"
+              alt="..."
+              height="250"
+            />
+            <div class="card-body text-center">
+              <h5 class="card-title fw-bold text-danger">Cancle Slots</h5>
+              <div class="card-text text-start">
+                <p class="mb-1 fs-xs">
+                  <span class="fw-bold">Oop's Something happned?</span> Cancle
+                  slot or change slot, Don't worry let's Do it right now.
+                </p>
+                <p class="mb-3 fs-xs">
+                  <span class="fw-bold text-info">Updated</span> :
+                  <span>Few Min ago</span>
+                </p>
+              </div>
+              <a href="/public/components/cancleSlot.html" class="btn btn-danger px-5">Cancle</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/src/js/script.js"></script>
+    <script src="/src/js/index.js"></script>
+  </body>
+</html>

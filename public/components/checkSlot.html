@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MyLib - checkSlot</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/src/style.css" />
+    <link rel="icon" type="image/x-icon" href="/src/favicon-32x32.png">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/public/index.html">MyLib.com</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/public/index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/public/components/about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/public/components/contact.html"
+                >Contact</a
+              >
+            </li>
+          </ul>
+          <div class="user">
+            <div id="userArea" class="userName text-white fw-bold P-0" role="button"></div>
+              <button type="button" class="fw-bold btn text-primary btn-sm p-0" id="logOutBtn">
+                Log Out
+              </button>
+          </div>
+          <div class="ms-2 user-img rounded-5 border-primary" role="button">
+            <img src="/src/default-img.png" class="img-fluid w-100 rounded-5" alt="User"/>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div id="loading"></div>
+    <div id="alertBox" style="z-index: 5;"></div>
+
+    <div class="w-100 container d-flex flex-column align-items-center">
+      <div class="text-start bg-dark mb-3 px-5 py-2 w-100 rounded-2 text-white hamburger-menu">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb m-0">
+            <li class="breadcrumb-item"><a href="/public/index.html" class="text-decoration-none">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-fill mb-1 me-1" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+            <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+          </svg>Dashboard</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Check Session</li>
+          </ol>
+        </nav>  
+      </div>
+      <!-- hamburger menu end -->
+      <!-- this div contain book & available detail at top -->
+      <div class=" d-flex align-items-center justify-content-between mb-3 w-50 bg-dark p-2 rounded-4 fw-bold all-view-seat" id="freshSeatData">
+      </div>
+      <!-- all-view-seat -->
+
+      <a href="#" class="btn btn-primary px-5" onclick="location.reload()">Refresh</a>
+      
+    </div>
+    <!-- container end -->
+    <div class="d-flex check-map mx-2 my-2 text-center ">
+      <div class="lib-map w-75 bg-dark rounded-2 text-light">
+        <div class="view-option text-start d-flex justify-content-between p-3">
+          <fieldset>
+            <legend class="col-form-label pt-0">View Result In</legend>
+            <input
+              class="form-check-input"
+              type="radio"
+              name="viewOption"
+              id="viewRoom"
+              value="Room"
+              checked
+            />
+            <label class="form-check-label me-3" for="viewRoom">Room</label>
+            <input
+              class="form-check-input"
+              type="radio"
+              name="viewOption"
+              id="viewTable"
+              value="Desks"
+              disabled
+            />
+            <label class="form-check-label me-3" for="viewTable" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="This function is Currently not available">Desks</label>
+            <input
+              class="form-check-input"
+              type="radio"
+              name="viewOption"
+              id="viewList"
+              value="List"
+              disabled
+            />
+            <label class="form-check-label me-3" for="viewList" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="This function is Currently not available">List</label>
+          </fieldset>
+          <div class="seat-info  fw-bold">
+            <div class="avail-info d-flex align-items-center">
+              <div class="avail-color bg-success mx-1 rounded-5"></div>
+              <span>Available Seats</span>
+            </div>
+            <div class="booked-info d-flex align-items-center">
+              <div class="booked-color bg-danger mx-1 rounded-5"></div>
+              <span>Booked Seats</span>
+            </div>
+          </div>
+        </div>
+        <!-- view-point end -->
+        <div class="lib-type d-flex">
+          <div class="w-75 lib-room p-2 d-flex align-items-center justify-content-center">
+            <!-- <div class="container-sm p-2 rounded-1 text-black">
+              <div class="sleve rounded-1 selve-y">
+                B<br/>o<br/>o<br/>k<br/><br/>S<br/>e<br/>l<br/>v<br/>e<br/>
+              </div>
+              <div class="sleve rounded-1 selve-y">
+                B<br/>o<br/>o<br/>k<br/><br/>S<br/>e<br/>l<br/>v<br/>e<br/>
+              </div>
+              <div class="sleve rounded-1 selve-y">
+                B<br/>o<br/>o<br/>k<br/><br/>S<br/>e<br/>l<br/>v<br/>e<br/>
+              </div>
+              <div class="sleve rounded-1 selve-y">
+                B<br/>o<br/>o<br/>k<br/><br/>S<br/>e<br/>l<br/>v<br/>e<br/>
+              </div>
+          
+              <div class="sleve rounded-1 selve-xt xt-1">Book Selve</div>
+              <div class="sleve rounded-1 selve-xt xt-2">Book Selve</div>
+              <div class="sleve rounded-1 selve-xb xb-1">Book Selve</div>
+              <div class="sleve rounded-1 selve-xb xb-2">Book Selve</div>
+          
+              <div class="desk bg-primary rounded-1 desk-1 d-flex justify-content-center align-items-center text-white fs-4 text-center">Desk 1
+                <div class="chair available-seat rounded-1 ch-1 tbc-top p-2" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-title="This Seat Is Currently availble, Book Now">1</div>
+          
+                <div class="chair available-seat rounded-1 ch-2 ch-x my-2 pt-4 tbc-left" data-bs-toggle="tooltip" data-bs-placement="right"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-title="This Seat Is Currently availble, Book Now">2</div>
+          
+                <div class="chair booked-seat rounded-1 ch-3 ch-x my-2 pt-4 tbc-left"  data-bs-toggle="tooltip" data-bs-placement="right"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-title="This Seat Is Currently Booked, See Details">3</div>
+                <div class="chair booked-seat rounded-1 ch-4 tbc-btm pt-2"  data-bs-toggle="tooltip" data-bs-placement="top"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-title="This Seat Is Currently Booked, See Details">4</div>
+                <div class="chair available-seat rounded-1 ch-5 ch-y my-2 pt-4 tbc-right" data-bs-toggle="tooltip" data-bs-placement="right"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-title="This Seat Is Currently availble, Book Now">5</div>
+                <div class="chair available-seat rounded-1 ch-6 ch-y my-2 pt-4 tbc-right" data-bs-toggle="tooltip" data-bs-placement="right"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-title="This Seat Is Currently availble, Book Now">6</div>
+              </div>
+              <div class="desk bg-primary rounded-1 desk-2 d-flex justify-content-center align-items-center text-white fs-4 text-center">Desk 2
+                <div class="chair available-seat rounded-1 ch-1 tbc-top"  data-bs-toggle="tooltip" data-bs-placement="bottom"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-title="This Seat Is Currently availble, Book Now">7</div>
+                <div class="chair booked-seat rounded-1 ch-2 ch-x my-2 pt-4 tbc-left"  data-bs-toggle="tooltip" data-bs-placement="left"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-title="This Seat Is Currently Booked, See Details">8</div>
+                <div class="chair available-seat rounded-1 ch-3 ch-x my-2 pt-4 tbc-left"  data-bs-toggle="tooltip" data-bs-placement="left"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-title="This Seat Is Currently availble, Book Now">9</div>
+                <div class="chair available-seat rounded-1 ch-4 tbc-btm pt-2"  data-bs-toggle="tooltip" data-bs-placement="top"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-title="This Seat Is Currently availble, Book Now">10</div>
+                <div class="chair booked-seat rounded-1 ch-5 ch-y my-2 pt-4 tbc-right"  data-bs-toggle="tooltip" data-bs-placement="right"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-title="This Seat Is Currently Booked, See Details">11</div>
+                <div class="chair available-seat rounded-1 ch-6 ch-y my-2 pt-4 tbc-right"  data-bs-toggle="tooltip" data-bs-placement="right"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-title="This Seat Is Currently availble, Book Now">12</div>
+              </div>
+              <div class="desk bg-primary rounded-1 desk-3 d-flex justify-content-center align-items-center text-white fs-4 text-center">Desk 3
+                <div class="chair available-seat rounded-1 ch-1 tbc-top"  data-bs-toggle="tooltip" data-bs-placement="bottom"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-title="This Seat Is Currently availble, Book Now">13</div>
+                <div class="chair available-seat rounded-1 ch-2 ch-x my-2 pt-4 tbc-left"  data-bs-toggle="tooltip" data-bs-placement="left"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-title="This Seat Is Currently availble, Book Now">16</div>
+                <div class="chair booked-seat rounded-1 ch-3 ch-x my-2 pt-4 tbc-left"  data-bs-toggle="tooltip" data-bs-placement="left"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-title="This Seat Is Currently Booked, See Details">15</div>
+                <div class="chair available-seat rounded-1 ch-4 tbc-btm pt-2"  data-bs-toggle="tooltip" data-bs-placement="right"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-title="This Seat Is Currently availble, Book Now">16</div>
+                <div class="chair available-seat rounded-1 ch-5 ch-y my-2 pt-4 tbc-right"  data-bs-toggle="tooltip" data-bs-placement="right"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-title="This Seat Is Currently availble, Book Now">17</div>
+                <div class="chair available-seat rounded-1 ch-6 ch-y my-2 pt-4 tbc-right"  data-bs-toggle="tooltip" data-bs-placement="right"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-title="This Seat Is Currently availble, Book Now">18</div>
+              </div>
+            </div> -->
+            <svg id="roomImg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-200 0 2300 1100" shape-rendering="geometricPrecision" style="background-color: transparent;" width="700">
+              <g transform="translate(0 0)">
+                <g transform="translate(-100 0)">
+                  <rect id="chair_1" class="chair to-up" width="184" height="172" rx="20" ry="20" transform="translate(210 96)" stroke-width="0"></rect>      
+                  <rect id="chair_2" class="chair to-top-left" width="184" height="172" rx="20" ry="20" transform="translate(16 283)" stroke-width="0"></rect>
+                      
+                  <rect id="chair_3" class="chair to-bottom-left" width="184" height="172" rx="20" ry="20" transform="translate(16 600)" stroke-width="0" ></rect>
+                      
+                  <rect id="chair_4" class="chair to-down" width="184" height="172" rx="20" ry="20" transform="translate(210 802)" stroke-width="0"></rect>
+                      
+                  <rect id="chair_5" class="chair to-bottom-right" width="184" height="172" rx="20" ry="20" transform="translate(420 600)" stroke-width="0"></rect>
+                      
+                  <rect id="chair_6" class="chair to-top-right" width="184" height="172" rx="20" ry="20" transform="translate(420 283)" stroke-width="0"></rect>
+                      
+                  <rect id="table_1" width="401.04737" height="727.541061" rx="20" ry="20" transform="translate(103 172)" fill="#0d6efd" stroke-width="0"></rect>
+                  </g>
+                  <g transform="translate(650 0)">
+                      
+                      <rect id="chair_7" class="chair to-up" width="184" height="172" rx="20" ry="20" transform="translate(210 96)" stroke-width="0"></rect>
+                      
+                      <rect id="chair_8" class="chair to-top-left" width="184" height="172" rx="20" ry="20" transform="translate(16 283)" stroke-width="0"></rect>
+                      
+                      <rect id="chair_9" class="chair to-bottom-left" width="184" height="172" rx="20" ry="20" transform="translate(16 600)" stroke-width="0"></rect>
+                      
+                      <rect id="chair_10" class="chair to-down" width="184" height="172" rx="20" ry="20" transform="translate(210 802)" stroke-width="0"></rect>
+                      
+                      <rect id="chair_11" class="chair to-bottom-right" width="184" height="172" rx="20" ry="20" transform="translate(420 600)" stroke-width="0"></rect>
+                      
+                      <rect id="chair_12" class="chair to-top-right" width="184" height="172" rx="20" ry="20" transform="translate(420 283)" stroke-width="0"></rect>
+                      
+                      <rect id="table_2" width="401.04737" height="727.541061" rx="20" ry="20" transform="translate(103 172)" fill="#0d6efd" stroke-width="0"></rect>
+                  </g>
+                  <g transform="translate(1400 0)">
+                     
+                     <rect id="chair_13" class="chair to-up" width="184" height="172" rx="20" ry="20" transform="translate(210 96)" stroke-width="0"></rect>
+                      
+                      <rect id="chair_14" class="chair to-top-left" width="184" height="172" rx="20" ry="20" transform="translate(16 283)" stroke-width="0"></rect>
+                      
+                      <rect id="chair_15" class="chair to-bottom-left" width="184" height="172" rx="20" ry="20" transform="translate(16 600)" stroke-width="0"></rect>
+                      
+                      <rect id="chair_16" class="chair to-down" width="184" height="172" rx="20" ry="20" transform="translate(210 802)" stroke-width="0"></rect>
+                      
+                      <rect id="chair_17" class="chair to-bottom-right" width="184" height="172" rx="20" ry="20" transform="translate(420 600)" stroke-width="0"></rect>
+                      
+                      <rect id="chair_18" class="chair to-top-right" width="184" height="172" rx="20" ry="20" transform="translate(420 283)" stroke-width="0"></rect>
+                      
+                      <rect id="table_3" width="401.04737" height="727.541061" rx="20" ry="20" transform="translate(103 172)" fill="#0d6efd" stroke-width="0"></rect>
+                  </g>
+              </g>
+            </svg>
+          </div>
+          <!-- lib room end -->
+          <div class="w-25 avail-slots">
+            <h5 class="text-success my-1 bg-dark">Available Slots</h5>
+            <!--  -->
+            <div class="card m-2 available-seat ds_list">
+              <div class="card-body p-1">
+                <div class="card-text text-white">
+                  <div class="row text-center">
+                    <div class="col">
+                      <span>Desk No. 1</span>
+                    </div>
+                    <div class="col">
+                      <span>Seat No. 1</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card m-2 available-seat ds_list">
+              <div class="card-body p-1">
+                <div class="card-text text-white">
+                  <div class="row text-center">
+                    <div class="col">
+                      <span>Desk No. 1</span>
+                    </div>
+                    <div class="col">
+                      <span>Seat No. 2</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card m-2 available-seat ds_list">
+              <div class="card-body p-1">
+                <div class="card-text text-white">
+                  <div class="row text-center">
+                    <div class="col">
+                      <span>Desk No. 1</span>
+                    </div>
+                    <div class="col">
+                      <span>Seat No. 3</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card m-2 available-seat ds_list">
+              <div class="card-body p-1">
+                <div class="card-text text-white">
+                  <div class="row text-center">
+                    <div class="col">
+                      <span>Desk No. 1</span>
+                    </div>
+                    <div class="col">
+                      <span>Seat No. 4</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card m-2 available-seat ds_list">
+              <div class="card-body p-1">
+                <div class="card-text text-white">
+                  <div class="row text-center">
+                    <div class="col">
+                      <span>Desk No. 1</span>
+                    </div>
+                    <div class="col">
+                      <span>Seat No. 5</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card m-2 available-seat ds_list">
+              <div class="card-body p-1">
+                <div class="card-text text-white">
+                  <div class="row text-center">
+                    <div class="col">
+                      <span>Desk No. 1</span>
+                    </div>
+                    <div class="col">
+                      <span>Seat No. 6</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card m-2 available-seat ds_list">
+              <div class="card-body p-1">
+                <div class="card-text text-white">
+                  <div class="row text-center">
+                    <div class="col">
+                      <span>Desk No. 2</span>
+                    </div>
+                    <div class="col">
+                      <span>Seat No. 7</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card m-2 available-seat ds_list">
+              <div class="card-body p-1">
+                <div class="card-text text-white">
+                  <div class="row text-center">
+                    <div class="col">
+                      <span>Desk No. 2</span>
+                    </div>
+                    <div class="col">
+                      <span>Seat No. 8</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card m-2 available-seat ds_list">
+              <div class="card-body p-1">
+                <div class="card-text text-white">
+                  <div class="row text-center">
+                    <div class="col">
+                      <span>Desk No. 2</span>
+                    </div>
+                    <div class="col">
+                      <span>Seat No. 9</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card m-2 available-seat ds_list">
+              <div class="card-body p-1">
+                <div class="card-text text-white">
+                  <div class="row text-center">
+                    <div class="col">
+                      <span>Desk No. 2</span>
+                    </div>
+                    <div class="col">
+                      <span>Seat No. 10</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card m-2 available-seat ds_list">
+              <div class="card-body p-1">
+                <div class="card-text text-white">
+                  <div class="row text-center">
+                    <div class="col">
+                      <span>Desk No. 2</span>
+                    </div>
+                    <div class="col">
+                      <span>Seat No. 11</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card m-2 available-seat ds_list">
+              <div class="card-body p-1">
+                <div class="card-text text-white">
+                  <div class="row text-center">
+                    <div class="col">
+                      <span>Desk No. 2</span>
+                    </div>
+                    <div class="col">
+                      <span>Seat No. 12</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card m-2 available-seat ds_list">
+              <div class="card-body p-1">
+                <div class="card-text text-white">
+                  <div class="row text-center">
+                    <div class="col">
+                      <span>Desk No. 3</span>
+                    </div>
+                    <div class="col">
+                      <span>Seat No. 13</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card m-2 available-seat ds_list">
+              <div class="card-body p-1">
+                <div class="card-text text-white">
+                  <div class="row text-center">
+                    <div class="col">
+                      <span>Desk No. 3</span>
+                    </div>
+                    <div class="col">
+                      <span>Seat No. 16</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card m-2 available-seat ds_list">
+              <div class="card-body p-1">
+                <div class="card-text text-white">
+                  <div class="row text-center">
+                    <div class="col">
+                      <span>Desk No. 3</span>
+                    </div>
+                    <div class="col">
+                      <span>Seat No. 15</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card m-2 available-seat ds_list">
+              <div class="card-body p-1">
+                <div class="card-text text-white">
+                  <div class="row text-center">
+                    <div class="col">
+                      <span>Desk No. 3</span>
+                    </div>
+                    <div class="col">
+                      <span>Seat No. 16</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card m-2 available-seat ds_list">
+              <div class="card-body p-1">
+                <div class="card-text text-white">
+                  <div class="row text-center">
+                    <div class="col">
+                      <span>Desk No. 3</span>
+                    </div>
+                    <div class="col">
+                      <span>Seat No. 17</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card m-2 available-seat ds_list">
+              <div class="card-body p-1">
+                <div class="card-text text-white">
+                  <div class="row text-center">
+                    <div class="col">
+                      <span>Desk No. 3</span>
+                    </div>
+                    <div class="col">
+                      <span>Seat No. 18</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>     
+          </div>
+          <!-- avail-slots end  -->
+        </div>
+        <!-- lib type end -->
+      </div>  
+      <!-- lib-map end -->
+      <div class="data-aside w-25 bg-dark rounded-2 mx-2 overflow-auto"></div>
+    </div>
+    <!-- check-map end -->
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/src/js/script.js"></script>
+    <script src="/src/js/checkSlot.js"></script>
+  </body>
+</html>

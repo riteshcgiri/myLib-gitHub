@@ -1,0 +1,450 @@
+::-webkit-scrollbar{
+    width: 10px;
+    height: 20px;
+    background-color: #fff;
+}
+::-webkit-scrollbar-thumb{
+    background-color: var(--dark);
+    width: 5px;
+    border-radius: 10px;
+}
+:root{
+    --primary:#0d6efd;
+    --secondary:#6c757d;
+    --success:#198754;
+    --info:#0dcaf0;
+    --warning:#ffc107;
+    --danger:#dc3545;
+    --light:#f8f9fa;
+    --dark:#212529;
+}
+body{
+    /* background: url('my-lib-bg.avif'); */
+    background: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=628&q=80'); 
+    background-size: cover;
+    position:relative;
+}
+.container{
+    margin-top: 10px !important;
+}
+form{
+    backdrop-filter: blur(5px);   
+    background: rgba(120 120 120 / 40%);
+    border-left:2px solid var(--primary);
+}
+.dob-box{
+    height: fit-content;
+}
+.input-remove{
+    width:0;
+    height: 0;
+}
+.user-img{
+    width: 40px !important;
+    border: 2px solid;
+}
+.user button{
+    border: none;
+}
+.user button:hover{
+    color: var(--danger) !important;
+}
+.d-brd{
+    border:1px solid red;
+}
+.fs-xs{
+    font-size: 14px !important;
+}
+
+
+/*  */
+.check-map{
+    height: 476px !important;
+}
+
+/* lib-room */
+
+.lib-room .container-sm{
+    height: 370px;
+    position: relative;
+    z-index: 1;
+    /* border-color: white !important; */
+    box-shadow: 0 0 4px 0px white;
+}
+.container-sm .sleve{
+    width: 20px;
+    height: 320px;
+    position: absolute;
+    top: 25px;
+    background:#fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.container-sm .selve-y:nth-child(1){
+    left:5px;
+}
+.container-sm .selve-y:nth-child(2){
+    left:265px;
+}
+.container-sm .selve-y:nth-child(3){
+    left: calc(267px * 2);
+}
+.container-sm .selve-y:nth-child(4){
+    left: calc(267px * 3);
+}
+
+.container-sm .selve-xt,.container-sm .selve-xb{
+    width: 200px;
+    height: 20px;
+}
+.container-sm .selve-xt{
+    top:2px;
+    left: 5px;
+}
+.container-sm .selve-xb{
+    top: 94%;
+    left: 5px;
+}
+.container-sm .xt-2, .container-sm .xb-2{
+    left: calc(5px + 305px);
+}
+
+.desk{
+    width: 150px;
+    height: 220px;
+    position: absolute;
+    top: 22%;
+    left: 65px;
+
+}
+.container-sm .desk-2{
+    left:calc(67px + 265px);
+}
+.container-sm .desk-3{
+    left:calc(67px + 265px *2);
+}
+.desk .chair{
+    width: 80px;
+    height: 50px;
+    background: white;
+    position: absolute;
+    z-index: -1;
+    cursor: pointer;
+    transition:all .5s ease;
+    
+}
+.desk .ch-x, .desk .ch-y{
+    height: 80px;
+    width: 50px;
+}
+.desk .ch-x{
+    left: -20px;
+    top: 10px
+}
+.desk .ch-y{
+    left: 120px;
+    top: 10px;
+}
+.desk .ch-3, .desk .ch-6{
+    top: 110px;
+}
+.desk .ch-1, .desk .ch-4{
+    left: 35px;
+    top: -25px;
+}
+.desk .ch-4{
+    top: 190px;
+}
+
+
+/* */
+@media only screen and (max-width: 1440px) {
+    .container-sm .selve-y:nth-child(1){
+        left:5px;
+    }
+    .container-sm .selve-y:nth-child(2){
+        left:250px;
+    }
+    .container-sm .selve-y:nth-child(3){
+        left: calc(250px * 2);
+    }
+    .container-sm .selve-y:nth-child(4){
+        left: calc(249px * 3);
+    }
+    
+    .container-sm .selve-xt,.container-sm .selve-xb{
+        width: 200px;
+        height: 20px;
+    }
+    .container-sm .selve-xt{
+        top:2px;
+        left: 5px;
+    }
+    .container-sm .selve-xb{
+        top: 94%;
+        left: 5px;
+    }
+    .container-sm .xt-2, .container-sm .xb-2{
+        left: calc(5px + 277px);
+    }
+    
+    .desk{
+        width: 150px;
+        height: 220px;
+        position: absolute;
+        top: 22%;
+        left: 59px;
+    
+    }
+    .container-sm .desk-2{
+        left:calc(55px + 255px);
+    }
+    .container-sm .desk-3{
+        left:calc(50px + 255px *2);
+    }
+    .desk .chair{
+        width: 80px;
+        height: 50px;
+        background: white;
+        position: absolute;
+        z-index: -1;
+        cursor: pointer;
+        transition:all .5s ease;
+        
+    }
+    .desk .ch-x, .desk .ch-y{
+        height: 80px;
+        width: 50px;
+    }
+    .desk .ch-x{
+        left: -20px;
+        top: 10px
+    }
+    .desk .ch-y{
+        left: 120px;
+        top: 10px;
+    }
+    .desk .ch-3, .desk .ch-6{
+        top: 110px;
+    }
+    .desk .ch-1, .desk .ch-4{
+        left: 35px;
+        top: -25px;
+    }
+    .desk .ch-4{
+        top: 190px;
+    }
+  }
+  @media only screen and (min-width: 1200px ){
+    .slot-option-box .col .card{
+        width: 18rem;
+      }
+  }
+/* */
+@media only screen and (max-width: 1024px) {
+    .lib-room{
+        display: none;
+        width: 0 !important;
+    
+    }
+    .container-sm{
+        display: none;
+    }
+    .avail-slots{
+        width: 100% !important;
+    }
+    .slot-option-box .col{
+        text-align: center !important;
+        display: flex;
+        align-items: center;
+    }
+    .all-view-seat{
+        flex-direction: column;
+    }
+    
+  }
+/*  */
+@media only screen and (max-width:770px) {
+    .all-view-seat{
+        text-align: center !important;
+    }
+    .all-view-seat .col{
+        text-align: center !important;
+    }
+    .slot-option-box{
+        align-items: center !important;
+        flex-direction: column !important;
+  }
+  .slot-option-box .col .card{
+    width: 18rem;
+  }
+}
+.slot-option-box .col .card{
+    transition: scale .2s ease-in-out;
+  }
+  
+.slot-option-box .col .card:hover{
+    scale: 1.030;
+  }
+  
+
+/*  */
+.avail-slots{
+    overflow-y: auto;
+    height: 386px !important;
+}
+.booked-seat{
+    background: var(--danger) !important;
+}
+.available-seat{
+    background: var(--success) !important; 
+}
+.tbc-top:hover{
+    top : -40px;
+ }
+ .tbc-btm:hover{
+    top : 210px;
+ }
+ .tbc-left:hover{
+    left : -40px;
+ }
+ .tbc-right:hover{
+    left : 140px;
+ }
+    
+ .tbc-top,
+ .tbc-btm,
+ .tbc-left,
+ .tbc-right{
+    text-align: center;
+ }
+ .avail-color, .booked-color{
+    width: 15px;
+    height: 15px;
+ }
+ .avail-slots .card{
+    cursor: pointer;
+ }
+ .avail-slots .card:hover{
+    outline:2px solid var(--primary)
+ }
+
+
+.cs-cont{
+    height: 73vh !important;
+    
+}
+.cs-cont > div:first-child{
+    backdrop-filter: blur(5px);
+    /* border:1px solid var(--dark); */
+    box-shadow: 0 0 10px rgba(255 255 255 / 20%);
+}
+
+.translate-middle{
+    top:20px;
+    font-size: 14px;
+
+}
+.modalBox{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px) ;    
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modalBoxN{
+    display: none;
+
+}
+.popUp{
+     animation: popup .8s forwards ;
+     animation-delay: 0.2s;
+     opacity: 1;
+     transform: scale(1);
+     visibility: hidden;
+}
+@keyframes popup {
+    0%{
+        opacity: 0;  
+        transform: scale(0);
+        visibility: hidden;
+    }
+    50%{
+        opacity: 1;  
+        transform: scale(1.2);
+        visibility: visible;
+    }
+    100%{
+        opacity: 1;  
+        transform: scale(1);
+        visibility: visible;
+    }
+}
+#alertBox{
+    width: 100%;
+    position: fixed;
+    z-index:1;
+    text-align: center;
+    bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+.password-eye{
+    top: 49px;
+    right: 30px;
+    cursor: pointer;
+}
+
+/* alert css */
+.alert{
+    padding: .4rem 5rem;
+}
+
+/* loading box */
+#loading{
+    position: absolute;
+    top: 40%;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+#timingHelp{
+    color:var(--light);
+    text-align: right;
+}
+#adminPage{
+    width: 0px;
+    height:80%;
+    transition: all 0.1s ease-in;
+    /* transform: scale(0); */
+    visibility: hidden;
+}
+.show-adminPage{
+    width: 50% !important;
+    visibility: visible !important;
+    display: flex !important;
+   /* transform: scale(1) !important; */
+}
+.show-adminPage
+/* admin-block */
+.admin-block, .admin-form{
+    min-height: 509px;
+    max-height: 600px;
+}
+
+.chair{
+    cursor: pointer;
+    fill: var(--success);
+}
+.booked-chair{
+    fill: var(--danger);
+}
